@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function Root() {
   return (
     <>
-      <div className="h-full text-neutral-800">
+      <div className="h-full text-neutral-700">
         <header>
           <NavigationBar />
         </header>
@@ -57,7 +57,7 @@ function NavigationBar() {
                   setRootLabel(label);
                 }}
               >
-                <span className="font-bold">{label}</span>
+                <span className="font-semibold text-lg">{label}</span>
                 {menu && (
                   <button
                     onClick={(e) => {
