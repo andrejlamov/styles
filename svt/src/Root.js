@@ -45,52 +45,47 @@ function NavigationBar() {
           return (
             <a
               className="h-full relative "
+              className={clsx(
+                "  self-stretch px-3 h-full flex flex-row relative justify-center items-center hover:bg-neutral-50",
+                { "bg-neutral-50": isActive }
+              )}
+              key={label}
               href={`#${label}`}
               onClick={(e) => {
                 setShowSubMenu(null);
                 setRootLabel(label);
               }}
             >
-              <span
-                key={label}
-                className={clsx(
-                  "  self-stretch px-3 h-full flex flex-col justify-center hover:bg-neutral-50",
-                  { "bg-neutral-50": isActive }
-                )}
-              >
-                <span className=" font-bold flex gap-2 items-center">
-                  <span>{label}</span>
-                  {menu && (
-                    <button
-                      onClick={(e) => {
-                        if (label === rootLabel && !showSubMenu) {
-                          setShowSubMenu(menu);
-                          setRootLabel(label);
-                        } else if (label == rootLabel) {
-                          setShowSubMenu(null);
-                          setRootLabel(null);
-                        } else {
-                          setShowSubMenu(menu);
-                          setRootLabel(label);
-                        }
-                        e.stopPropagation();
-                      }}
-                      className={clsx(
-                        " rounded-full ",
-                        isActive
-                          ? "bg-red-500 text-white hover:bg-red-700"
-                          : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
-                      )}
-                    >
-                      {isActive ? (
-                        <ChevronUp className="h-5 w-5" />
-                      ) : (
-                        <ChevronDown className="h-5 w-5" />
-                      )}
-                    </button>
+              <span className="font-bold">{label}</span>
+              {menu && (
+                <button
+                  onClick={(e) => {
+                    if (label === rootLabel && !showSubMenu) {
+                      setShowSubMenu(menu);
+                      setRootLabel(label);
+                    } else if (label == rootLabel) {
+                      setShowSubMenu(null);
+                      setRootLabel(null);
+                    } else {
+                      setShowSubMenu(menu);
+                      setRootLabel(label);
+                    }
+                    e.stopPropagation();
+                  }}
+                  className={clsx(
+                    " rounded-full ml-3",
+                    isActive
+                      ? "bg-red-500 text-white hover:bg-red-700"
+                      : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
                   )}
-                </span>
-              </span>
+                >
+                  {isActive ? (
+                    <ChevronUp className="h-5 w-5" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5" />
+                  )}
+                </button>
+              )}
 
               {showSubMenu && rootLabel === label && <LinkSubMenu />}
             </a>
