@@ -76,8 +76,7 @@ function NavigationBar() {
                     className={clsx(
                       " rounded-full ml-3 relative",
                       {
-                        "after:content('') after:absolure after:border-[7px] after:absolute after:border-t-transparent after:border-r-transparent after:border-b-red-500 after:border-l-transparent after:right-[1px] after:top-[34px]":
-                          isActive,
+                        "after:content('') after:absolure after:border-[7px] after:absolute after:border-t-transparent after:border-r-transparent after:border-b-red-500 after:border-l-transparent after:right-[1px] after:top-[34px]": false,
                       },
                       isActive
                         ? "bg-red-500 text-white hover:bg-red-700"
@@ -109,7 +108,7 @@ function LinkSubMenu({ className }) {
         ` bg-white shadow-sm font-light  absolute
  w-[512px] left-[calc(100%-25px-256px)]
  top-[calc(theme(space.20))] `,
-
+        "before:content('') before:absolure before:border-[7px] before:absolute before:border-t-transparent before:border-r-transparent before:border-b-red-500 before:border-l-transparent before:left-[calc(50%-3px)] before:top-[-18px]",
         className
       )}
     >
