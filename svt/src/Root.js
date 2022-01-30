@@ -43,58 +43,57 @@ function NavigationBar() {
         data.header_links.map(({ label, menu }) => {
           const isActive = label === rootLabel && showSubMenu;
           return (
-            <span className="h-full relative">
-              <a
-                className="h-full "
-                href={`#${label}`}
-                onClick={(e) => {
-                  setShowSubMenu(null);
-                  setRootLabel(label);
-                }}
+            <a
+              className="h-full relative "
+              href={`#${label}`}
+              onClick={(e) => {
+                setShowSubMenu(null);
+                setRootLabel(label);
+              }}
+            >
+              <span
+                key={label}
+                className={clsx(
+                  "  self-stretch px-3 h-full flex flex-col justify-center hover:bg-neutral-50",
+                  { "bg-neutral-50": isActive }
+                )}
               >
-                <span
-                  key={label}
-                  className={clsx(
-                    "  self-stretch px-3 h-full flex flex-col justify-center hover:bg-neutral-50",
-                    { "bg-neutral-50": isActive }
+                <span className=" font-bold flex gap-2 items-center">
+                  <span>{label}</span>
+                  {menu && (
+                    <button
+                      onClick={(e) => {
+                        if (label === rootLabel && !showSubMenu) {
+                          setShowSubMenu(menu);
+                          setRootLabel(label);
+                        } else if (label == rootLabel) {
+                          setShowSubMenu(null);
+                          setRootLabel(null);
+                        } else {
+                          setShowSubMenu(menu);
+                          setRootLabel(label);
+                        }
+                        e.stopPropagation();
+                      }}
+                      className={clsx(
+                        " rounded-full ",
+                        isActive
+                          ? "bg-red-500 text-white hover:bg-red-700"
+                          : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
+                      )}
+                    >
+                      {isActive ? (
+                        <ChevronUp className="h-5 w-5" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5" />
+                      )}
+                    </button>
                   )}
-                >
-                  <span className=" font-bold flex gap-2 items-center">
-                    <span>{label}</span>
-                    {menu && (
-                      <button
-                        onClick={(e) => {
-                          if (label === rootLabel && !showSubMenu) {
-                            setShowSubMenu(menu);
-                            setRootLabel(label);
-                          } else if (label == rootLabel) {
-                            setShowSubMenu(null);
-                            setRootLabel(null);
-                          } else {
-                            setShowSubMenu(menu);
-                            setRootLabel(label);
-                          }
-                          e.stopPropagation();
-                        }}
-                        className={clsx(
-                          " rounded-full ",
-                          isActive
-                            ? "bg-red-500 text-white hover:bg-red-700"
-                            : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
-                        )}
-                      >
-                        {isActive ? (
-                          <ChevronUp className="h-5 w-5" />
-                        ) : (
-                          <ChevronDown className="h-5 w-5" />
-                        )}
-                      </button>
-                    )}
-                  </span>
                 </span>
-              </a>
+              </span>
+
               {showSubMenu && rootLabel === label && <LinkSubMenu />}
-            </span>
+            </a>
           );
         }),
         <span className=" border-neutral-300 self-stretch h-full border-r-[1px]"></span>
