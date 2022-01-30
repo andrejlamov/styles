@@ -96,7 +96,8 @@ function NavigationBar() {
               {showSubMenu && rootLabel === label && <LinkSubMenu />}
             </span>
           );
-        }, <span href="#" className=" border-neutral-300 self-stretch h-full border-r-[1px]"></span>)
+        }),
+        <span className=" border-neutral-300 self-stretch h-full border-r-[1px]"></span>
       )}
     </nav>
   );
