@@ -73,7 +73,11 @@ function NavigationBar() {
                     e.stopPropagation();
                   }}
                   className={clsx(
-                    " rounded-full ml-3",
+                    " rounded-full ml-3 relative",
+                    {
+                      "after:content('') after:absolure after:border-[7px] after:absolute after:border-t-transparent after:border-r-transparent after:border-b-red-500 after:border-l-transparent after:right-[3px] after:top-[34px]":
+                        isActive,
+                    },
                     isActive
                       ? "bg-red-500 text-white hover:bg-red-700"
                       : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
@@ -86,7 +90,6 @@ function NavigationBar() {
                   )}
                 </button>
               )}
-
               {showSubMenu && rootLabel === label && <LinkSubMenu />}
             </a>
           );
@@ -103,7 +106,8 @@ function LinkSubMenu({ className }) {
       className={clsx(
         ` bg-white shadow-sm font-light  absolute
  w-[512px] left-[calc(-256px+50%)]
- top-[calc(theme(space.20))]`,
+ top-[calc(theme(space.20))] `,
+
         className
       )}
     >
