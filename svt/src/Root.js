@@ -23,7 +23,7 @@ export default function Root() {
 const data = {
   header_links: [
     { label: "Nyheter", active: true, menu: ["Nyheter", "Nyheter", "Nyheter"] },
-    { label: "Lokalt", menu: ["Lokalt", "Lokalt", "Lokalt"] },
+    { label: "Looookaaaaalt", menu: ["Lokalt", "Lokalt", "Lokalt"] },
     { label: "SVT Play" },
   ],
 };
@@ -43,55 +43,57 @@ function NavigationBar() {
         data.header_links.map(({ label, menu }) => {
           const isActive = label === rootLabel && showSubMenu;
           return (
-            <a
-              className="h-full relative "
-              className={clsx(
-                "  self-stretch px-3 h-full flex flex-row relative justify-center items-center hover:bg-neutral-50",
-                { "bg-neutral-50": isActive }
-              )}
-              key={label}
-              href={`#${label}`}
-              onClick={(e) => {
-                setShowSubMenu(null);
-                setRootLabel(label);
-              }}
-            >
-              <span className="font-bold">{label}</span>
-              {menu && (
-                <button
-                  onClick={(e) => {
-                    if (label === rootLabel && !showSubMenu) {
-                      setShowSubMenu(menu);
-                      setRootLabel(label);
-                    } else if (label == rootLabel) {
-                      setShowSubMenu(null);
-                      setRootLabel(null);
-                    } else {
-                      setShowSubMenu(menu);
-                      setRootLabel(label);
-                    }
-                    e.stopPropagation();
-                  }}
-                  className={clsx(
-                    " rounded-full ml-3 relative",
-                    {
-                      "after:content('') after:absolure after:border-[7px] after:absolute after:border-t-transparent after:border-r-transparent after:border-b-red-500 after:border-l-transparent after:right-[3px] after:top-[34px]":
-                        isActive,
-                    },
-                    isActive
-                      ? "bg-red-500 text-white hover:bg-red-700"
-                      : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
-                  )}
-                >
-                  {isActive ? (
-                    <ChevronUp className="h-5 w-5" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5" />
-                  )}
-                </button>
-              )}
+            <span className="h-full relative">
+              <a
+                className="h-full "
+                className={clsx(
+                  "  self-stretch px-3 h-full flex flex-row relative justify-center items-center hover:bg-neutral-50",
+                  { "bg-neutral-50": isActive }
+                )}
+                key={label}
+                href={`#${label}`}
+                onClick={(e) => {
+                  setShowSubMenu(null);
+                  setRootLabel(label);
+                }}
+              >
+                <span className="font-bold">{label}</span>
+                {menu && (
+                  <button
+                    onClick={(e) => {
+                      if (label === rootLabel && !showSubMenu) {
+                        setShowSubMenu(menu);
+                        setRootLabel(label);
+                      } else if (label == rootLabel) {
+                        setShowSubMenu(null);
+                        setRootLabel(null);
+                      } else {
+                        setShowSubMenu(menu);
+                        setRootLabel(label);
+                      }
+                      e.stopPropagation();
+                    }}
+                    className={clsx(
+                      " rounded-full ml-3 relative",
+                      {
+                        "after:content('') after:absolure after:border-[7px] after:absolute after:border-t-transparent after:border-r-transparent after:border-b-red-500 after:border-l-transparent after:right-[1px] after:top-[34px]":
+                          isActive,
+                      },
+                      isActive
+                        ? "bg-red-500 text-white hover:bg-red-700"
+                        : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
+                    )}
+                  >
+                    {isActive ? (
+                      <ChevronUp className="h-5 w-5" />
+                    ) : (
+                      <ChevronDown className="h-5 w-5" />
+                    )}
+                  </button>
+                )}
+              </a>
               {showSubMenu && rootLabel === label && <LinkSubMenu />}
-            </a>
+            </span>
           );
         }),
         <span className=" border-neutral-300 self-stretch h-full border-r-[1px]"></span>
@@ -105,7 +107,7 @@ function LinkSubMenu({ className }) {
     <div
       className={clsx(
         ` bg-white shadow-sm font-light  absolute
- w-[512px] left-[calc(-256px+50%)]
+ w-[512px] left-[calc(100%-25px-256px)]
  top-[calc(theme(space.20))] `,
 
         className
@@ -113,7 +115,7 @@ function LinkSubMenu({ className }) {
     >
       <div className="flex">
         <a className="flex-1">asd</a>
-        <a className="flex-1">asd</a>
+        <a className="flex-1 bg-red-100">asd</a>
         <a className="flex-1">asd</a>
       </div>
       <div className="flex">
