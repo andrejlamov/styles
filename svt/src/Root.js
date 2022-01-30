@@ -1,6 +1,6 @@
 import { ChevronDown, ChevronUp } from "./components/icons";
 import clsx from "clsx";
-import { surround_each } from "./utils";
+import { surroundEach } from "./utils";
 import { useState } from "react";
 
 export default function Root() {
@@ -39,7 +39,7 @@ function NavigationBar() {
         <span className="font-extralight text-3xl">NYHETER</span>
       </a>
       <span className="pr-5"></span>
-      {surround_each(
+      {surroundEach(
         data.header_links.map(({ label, menu }) => {
           const isActive = label === rootLabel && showSubMenu;
           return (
@@ -96,24 +96,18 @@ function NavigationBar() {
               {showSubMenu && rootLabel === label && <LinkSubMenu />}
             </span>
           );
-        }),
-        (sep = (
-          <span
-            href="#"
-            className=" border-neutral-300 self-stretch h-full border-r-[1px]"
-          ></span>
-        ))
+        }, <span href="#" className=" border-neutral-300 self-stretch h-full border-r-[1px]"></span>)
       )}
     </nav>
   );
 }
 
-function LinkSubMenu({ className, width = 512 }) {
+function LinkSubMenu({ className }) {
   return (
     <div
       className={clsx(
         ` bg-white shadow-sm font-light  absolute
- w-[${width}px] left-[calc(-${width / 2}px+50%)]
+ w-[512px] left-[calc(-256px+50%)]
  top-[calc(theme(space.20))]`,
         className
       )}
