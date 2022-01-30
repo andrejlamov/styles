@@ -23,7 +23,7 @@ export default function Root() {
 const data = {
   header_links: [
     { label: "Nyheter", active: true, menu: ["Nyheter", "Nyheter", "Nyheter"] },
-    { label: "Looookaaaaalt", menu: ["Lokalt", "Lokalt", "Lokalt"] },
+    { label: "Spoooooort", menu: ["Lokalt", "Lokalt", "Lokalt"] },
     { label: "SVT Play" },
   ],
 };
