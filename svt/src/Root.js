@@ -33,7 +33,7 @@ function NavigationBar() {
   const [showSubMenu, setShowSubMenu] = useState(null);
 
   return (
-    <nav className="flex relative justify-center items-center h-20 border-b-4 border-red-500">
+    <nav className="flex relative justify-center items-center h-20 border-b-4 border-red-600">
       <a href="#" className="flex gap-2 pb-2 items-baseline">
         <span className="font-semibold text-4xl">svt</span>
         <span className="font-extralight text-3xl">NYHETER</span>
@@ -76,7 +76,7 @@ function NavigationBar() {
                     className={clsx(
                       " rounded-full ml-3 relative",
                       isActive
-                        ? "bg-red-500 text-white hover:bg-red-700"
+                        ? "bg-red-600 text-white hover:bg-red-700"
                         : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
                     )}
                   >
@@ -103,7 +103,7 @@ function LinkSubMenu({ className }) {
     <div
       className={clsx(
         " bg-white shadow-sm font-light  absolute w-[512px] left-[calc(100%-25px-256px)] top-[calc(theme(space.20))] ",
-        "before:content('') before:absolure before:border-[7px] before:absolute before:border-t-transparent before:border-r-transparent before:border-b-red-500 before:border-l-transparent before:left-[calc(50%-3px)] before:top-[-18px]",
+        "before:content('') before:absolure before:border-[7px] before:absolute before:border-t-transparent before:border-r-transparent before:border-b-red-600 before:border-l-transparent before:left-[calc(50%-3px)] before:top-[-18px]",
         className
       )}
     >
