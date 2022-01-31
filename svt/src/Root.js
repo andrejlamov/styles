@@ -11,9 +11,7 @@ export default function Root() {
           <NavigationBar />
         </header>
         <main className="h-full ">
-          <div className="h-full bg-neutral-100 flex justify-center">
-            hej hej hej
-          </div>
+          <div className="h-full bg-neutral-100 flex justify-center">hej hej hej</div>
         </main>
         <footer></footer>
       </div>
@@ -80,11 +78,7 @@ function NavigationBar() {
                         : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
                     )}
                   >
-                    {isActive ? (
-                      <ChevronUp className="h-5 w-5" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5" />
-                    )}
+                    {isActive ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
                   </button>
                 )}
               </a>

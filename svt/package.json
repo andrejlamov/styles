@@ -4,7 +4,8 @@
   "source": "index.html",
   "scripts": {
     "start": "parcel serve index.html assets/**/* --dist-dir dist/dev",
-    "build": "parcel build index.html assets/**/* --dist-dir dist/prod"
+    "build": "parcel build index.html assets/**/* --dist-dir dist/prod",
+    "format": "prettier --ignore-path .gitignore --ignore-unknown --write ."
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
