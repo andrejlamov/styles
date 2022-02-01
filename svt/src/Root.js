@@ -10,9 +10,7 @@ export default function Root() {
           <NavigationBar />
         </header>
         <main className="h-full ">
-          <div className="h-full bg-neutral-100 flex justify-center">
-            hej hej hej
-          </div>
+          <div className="h-full bg-neutral-100 flex justify-center">hej hej hej</div>
         </main>
         <footer></footer>
       </div>
@@ -21,9 +19,17 @@ export default function Root() {
 }
 const data = {
   header_links: [
-    { label: "Nyheter", active: true, menu: ["Nyheter", "Nyheter", "Nyheter"] },
-    { label: "Spoooooort", menu: ["Lokalt", "Lokalt", "Lokalt"] },
-    { label: "SVT Play" },
+    {
+      label: "Nyheter",
+      theme: "news",
+      menu: ["Nyheter", "Nyheter", "Nyheter"],
+    },
+    {
+      label: "Sport",
+      theme: "sport",
+      menu: ["Lokalt", "Lokalt", "Lokalt"],
+    },
+    { label: "Om SVT" },
   ],
 };
 
@@ -56,7 +62,7 @@ function NavigationBar() {
               }}
             >
               <span className="font-semibold text-lg">{label}</span>
-              {menu && (
+              {!!menu && (
                 <button
                   onClick={(e) => {
                     if (label === rootLabel && !showSubMenu) {
@@ -78,11 +84,7 @@ function NavigationBar() {
                       : "bg-neutral-200 text-neutral-500 hover:bg-neutral-300"
                   )}
                 >
-                  {isActive ? (
-                    <ChevronUp className="h-5 w-5" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5" />
-                  )}
+                  {isActive ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
                 </button>
               )}
             </a>
