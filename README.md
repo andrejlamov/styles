@@ -2,7 +2,7 @@
 
 A place to get more fluent in web programming & design.
 
-## SVT (Sverige Television)
+## SVT (Sveriges Television)
 
 [Original](https://www.svt.se)
 
