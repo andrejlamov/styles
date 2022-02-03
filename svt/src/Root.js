@@ -41,11 +41,6 @@ const data = {
 };
 
 function NavigationBar() {
-  const [rootLabel, setRootLabel] = useState("Nyheter");
-  const [showSubMenu, setShowSubMenu] = useState(null);
-
-  const [showMenu, setShowMenu] = useState(false);
-
   return (
     <nav className="flex relative items-center h-20 border-b-4 border-red-600">
       <a href="#" className="flex pb-2 items-baseline mr-auto px-5">
@@ -53,76 +48,72 @@ function NavigationBar() {
         <span className="font-extralight text-3xl">NYHETER</span>
       </a>
       <Popover className="relative  h-full">
-        <Popover.Button
-          className={clsx("flex items-center gap-3 border-l-[1px] px-3 border-r-[1px] border-neutral-300 h-full", {
-            "bg-neutral-50": true,
-          })}
-        >
-          <a>
-            <span className="font-semibold text-base">Lokalt</span>
-          </a>
-          <a className="rounded-full bg-red-600 text-neutral-50">
-            <icons.ChevronDown className="w-5 h-5"></icons.ChevronDown>
-          </a>
-        </Popover.Button>
-        <Popover.Panel
-          className={clsx(
-            "absolute right-0 top-[calc(theme(spacing.20))] ",
-            "before:content('') before:absolure before:border-[7px] before:absolute before:border-t-transparent before:border-r-transparent before:border-b-red-600 before:border-l-transparent before:left-[calc(100%-30px)] before:top-[-17px]"
-          )}
-        >
-          <LinkSubMenu2 />
-        </Popover.Panel>
+        {({ open }) => (
+          <>
+            <Popover.Button
+              className={clsx("flex items-center gap-3 border-l-[1px] px-3 border-r-[1px] border-neutral-300 h-full", {
+                "bg-neutral-100": open,
+              })}
+            >
+              <a>
+                <span className="font-semibold text-base">Lokalt</span>
+              </a>
+              <a className="rounded-full bg-red-600 text-neutral-50">
+                {open ? <icons.ChevronUp className="w-5 h-5" /> : <icons.ChevronDown className="w-5 h-5" />}
+              </a>
+            </Popover.Button>
+            <Popover.Panel
+              className={clsx(
+                "absolute right-0 top-[calc(theme(spacing.20))] w-72 ",
+                "before:content('') before:absolure before:border-[7px] before:absolute before:border-t-transparent before:border-r-transparent before:border-b-red-600 before:border-l-transparent before:left-[calc(100%-30px)] before:top-[-17px]"
+              )}
+            >
+              <LinkSubMenu />
+            </Popover.Panel>
+          </>
+        )}
       </Popover>
       <Popover className="h-full">
-        <Popover.Button className="h-full px-2" onClick={() => setShowMenu(!showMenu)}>
-          {showMenu ? (
-            <icons.X className="w-8 h-8" pathProps={{ strokeWidth: 1.5 }} />
-          ) : (
-            <icons.Menu className="w-8 h-8" pathProps={{ strokeWidth: 1.5 }} />
-          )}
-        </Popover.Button>
-        <Popover.Panel className={clsx("absolute   left-0 right-0 top-[calc(theme(spacing.20))] bg-neutral-50")}>
-          <div className="flex flex-col justify-center">
-            <div>hej</div>
-            <div>hej</div>
-            <div>hej</div>
-            <div>hej</div>
-            <div>hej</div>
-            <div>hej</div>
-          </div>
-        </Popover.Panel>
+        {({ open }) => (
+          <>
+            <Popover.Button
+              className="h-full px-2"
+              onClick={() => {
+                setShowMenu(!showMenu);
+              }}
+            >
+              {open ? (
+                <icons.X className="w-8 h-8" pathProps={{ strokeWidth: 1.5 }} />
+              ) : (
+                <icons.Menu className="w-8 h-8" pathProps={{ strokeWidth: 1.5 }} />
+              )}
+            </Popover.Button>
+
+            <Popover.Panel className={clsx("absolute   left-0 right-0 top-[calc(theme(spacing.20))] bg-neutral-50")}>
+              <Menu />
+            </Popover.Panel>
+          </>
+        )}
       </Popover>
     </nav>
   );
 }
-function LinkSubMenu2() {
+function Menu() {
   return (
-    <div className={clsx(" flex flex-row w-64 bg-neutral-50")}>
-      <div className="flex flex-col flex-1">
-        <a className="flex-1 w-16">asd</a>
-        <a className="flex-1 bg-red-100">asd</a>
-        <a className="flex-1">asd</a>
-        <a className="flex-1">asd</a>
-      </div>
-      <div className="flex-col flex flex-1">
-        <a className="flex-1">asd</a>
-        <a className="flex-1">asd</a>
-        <a className="flex-1">asd</a>
-        <a className="flex-1">asd</a>
-      </div>
+    <div className="flex flex-col justify-center">
+      <div>hej</div>
+      <div>hej</div>
+      <div>hej</div>
+      <div>hej</div>
+      <div>hej</div>
+      <div>hej</div>
     </div>
   );
 }
+
 function LinkSubMenu({ className }) {
   return (
-    <div
-      className={clsx(
-        " bg-white shadow-sm font-light  absolute w-[512px] left-[calc(100%-25px-256px)] top-[calc(theme(space.20))] ",
-        "before:content('') before:absolure before:border-[7px] before:absolute before:border-t-transparent before:border-r-transparent before:border-b-red-600 before:border-l-transparent before:left-[calc(50%-5px)] before:top-[-16px]",
-        className
-      )}
-    >
+    <div className={clsx(" flex flex-1 flex-col bg-neutral-50 ", className)}>
       <div className="flex">
         <a className="flex-1">asd</a>
         <a className="flex-1 bg-red-100">asd</a>
