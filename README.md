@@ -8,4 +8,4 @@ A place to get more fluent in web programming & design.
 
 [WIP Replica](http://svt.styles.andrej.nu)
 
-Used tech: react, tailwindcss
+Used tech: react, vanialla tailwindcss, close-enough google font, headlessui
