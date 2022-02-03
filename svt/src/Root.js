@@ -78,15 +78,15 @@ function NavigationBar() {
         {({ open }) => (
           <>
             <Popover.Button
-              className="h-full px-2"
+              className="h-full px-4"
               onClick={() => {
                 setShowMenu(!showMenu);
               }}
             >
               {open ? (
-                <icons.X className="w-8 h-8" pathProps={{ strokeWidth: 1.5 }} />
+                <icons.X className="w-10 h-10" pathProps={{ strokeWidth: 1 }} />
               ) : (
-                <icons.Menu className="w-8 h-8" pathProps={{ strokeWidth: 1.5 }} />
+                <icons.Menu className="w-10 h-10" pathProps={{ strokeWidth: 1 }} />
               )}
             </Popover.Button>
 
