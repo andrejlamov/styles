@@ -43,7 +43,7 @@ const data = {
 function NavigationBar() {
   return (
     <nav className="flex relative items-center h-20 border-b-4 border-red-600">
-      <a href="#" className="flex pb-2 items-baseline mr-auto px-5">
+      <a href="#" className="flex pb-2 items-baseline mr-auto px-2 md:px-5">
         <span className="font-semibold text-4xl pr-4">svt</span>
         <span className="font-extralight text-3xl">NYHETER</span>
       </a>
