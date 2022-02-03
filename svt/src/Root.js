@@ -51,13 +51,14 @@ function NavigationBar() {
         {({ open }) => (
           <>
             <Popover.Button
-              className={clsx("flex items-center gap-3 border-l-[1px] px-3 border-r-[1px] border-neutral-300 h-full", {
+              className={clsx("flex items-center border-l-[1px] px-3 border-r-[1px] border-neutral-300 h-full", {
                 "bg-neutral-100": open,
               })}
             >
               <a>
                 <span className="font-semibold text-base">Lokalt</span>
               </a>
+              <span className="pr-3"></span>
               <a className="rounded-full bg-red-600 text-neutral-50">
                 {open ? <icons.ChevronUp className="w-5 h-5" /> : <icons.ChevronDown className="w-5 h-5" />}
               </a>
