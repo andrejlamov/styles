@@ -17,6 +17,7 @@ export default function Root() {
     </>
   );
 }
+
 const data = {
   header_links: [
     {
@@ -39,11 +40,11 @@ function NavigationBar() {
 
   return (
     <nav className="flex relative justify-center items-center h-20 border-b-4 border-red-600">
-      <a href="#" className="flex gap-2 pb-2 items-baseline">
-        <span className="font-semibold text-4xl">svt</span>
-        <span className="font-extralight text-3xl">NYHETER</span>
+      <a href="#" className="flex pb-2 items-baseline">
+        <span className="font-semibold text-5xl pr-4">svt</span>
+        <span className="font-extralight text-4xl">NYHETER</span>
       </a>
-      <span className="pr-5"></span>
+      <span className="pr-9"></span>
       {data.header_links.map(({ label, menu }, i) => {
         const isActive = label === rootLabel && showSubMenu;
         return (
@@ -61,7 +62,7 @@ function NavigationBar() {
                 setRootLabel(label);
               }}
             >
-              <span className="font-semibold text-lg">{label}</span>
+              <span className="font-semibold text-base">{label}</span>
               {!!menu && (
                 <button
                   onClick={(e) => {
