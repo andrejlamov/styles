@@ -8,4 +8,4 @@ A place to get more fluent in web programming & design.
 
 [WIP Replica](http://svt.styles.andrej.nu)
 
-Used tech: react, tailwindcss and its color palette, close-enough google font, headlessui, reach ui
+Used tech: react, tailwindcss and its color default palette, close-enough google font, headlessui, reach ui
