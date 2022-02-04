@@ -95,7 +95,7 @@ function NavbarPopoverLinkMenu({ link, label, className }) {
                     className={clsx(
                       "rounded-full bg-red-600 w-min h-min block text-neutral-50",
                       {
-                        "bg-neutral-300 text-neutral-600 hover:bg-neutral-400": !open,
+                        "bg-neutral-300 text-neutral-600 hover:bg-neutral-400": !open && !match,
                       },
                       { "hover:bg-red-700": open }
                     )}
