@@ -11,10 +11,13 @@ export default function Root() {
         <header>
           <NavigationBar />
         </header>
-        <main className="h-full ">
-          <div path="/" className="h-full bg-neutral-100 flex justify-center">
-            hej hej hej
-          </div>
+
+        <main className="h-full bg-neutral-100  " path="/">
+          <Router>
+            <Nyheter path="/nyheter" />
+            <Lokalt path="/lokalt" />
+            <Sport path="/sport" />
+          </Router>
         </main>
         <footer></footer>
       </div>
@@ -22,40 +25,31 @@ export default function Root() {
   );
 }
 
-const data = {
-  header_links: [
-    {
-      label: "Nyheter",
-      theme: "news",
-      menu: ["Nyheter", "Nyheter", "Nyheter"],
-    },
-    {
-      label: "Lokalt",
-      theme: "news",
-      menu: ["Lokalt", "Lokalt", "Lokalt"],
-    },
-    {
-      label: "Sport",
-      theme: "sport",
-      menu: ["Lokalt", "Lokalt", "Lokalt"],
-    },
-    { label: "Om SVT" },
-  ],
-};
+function Nyheter() {
+  return <div className="h-full  flex justify-center">nyheter nyheter nyheter</div>;
+}
+
+function Sport() {
+  return <div className="h-full  flex justify-center">sport sport sport</div>;
+}
+
+function Lokalt() {
+  return <div className="h-full  flex justify-center">lokalt lokalt lokalt</div>;
+}
 
 function NavigationBar() {
   return (
     <nav className="flex relative md:justify-center items-center h-20 border-b-4  border-red-600">
-      <Link to="/Nyheter" href="#" className="flex pb-2 items-baseline  px-3  mr-auto md:mr-0 md:mr-5">
+      <Link to="/nyheter" href="#" className="flex pb-2 items-baseline  px-3  mr-auto md:mr-5">
         <span className="font-semibold text-4xl pr-4">svt</span>
         <span className="font-extralight text-3xl">NYHETER</span>
       </Link>
       <div className=" h-full hidden md:flex  ">
-        <NavbarPopoverLinkMenu label="Nyheter" className="border-l-[1px] border-neutral-300" />
-        <NavbarPopoverLinkMenu label="Lokalt" className="border-l-[1px] border-neutral-300" />
-        <NavbarPopoverLinkMenu label="Sport" className="border-x-[1px] border-neutral-300" />
+        <NavbarPopoverLinkMenu link="nyheter" label="Nyheter" className="border-l-[1px] border-neutral-300" />
+        <NavbarPopoverLinkMenu link="lokalt" label="Lokalt" className="border-l-[1px] border-neutral-300  " />
+        <NavbarPopoverLinkMenu link="sport" label="Sport" className="border-x-[1px] border-neutral-300" />
       </div>
-      <NavbarPopoverLinkMenu label="Lokalt" className="md:hidden border-l-[1px] border-neutral-300" />
+      <NavbarPopoverLinkMenu link="lokalt" label="Lokalt" className="md:hidden border-l-[1px] border-neutral-300" />
       <Popover className="h-full md:hidden border-l-[1px] border-neutral-300">
         {({ open }) => (
           <>
@@ -82,15 +76,13 @@ function NavigationBar() {
   );
 }
 
-function NavbarPopoverLinkMenu({ label, className }) {
-  const [isActive, setIsActive] = useState(false);
-
+function NavbarPopoverLinkMenu({ link, label, className }) {
   return (
-    <Match path={`/${label}`}>
+    <Match path={`/${link}`}>
       {({ match }) => (
         <div className={clsx("flex h-full justify-center  items-center   relative", className)}>
           <Link
-            to={`/${label}`}
+            to={`/${link}`}
             className={clsx("flex items-center pl-3 h-full w-full pr-10 ", { "bg-neutral-100": match })}
           >
             <span className="font-semibold text-base ">{label}</span>
