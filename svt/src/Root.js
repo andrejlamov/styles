@@ -44,10 +44,15 @@ function NavigationBar() {
         <span className="font-semibold text-4xl pr-4">svt</span>
         <span className="font-extralight text-3xl">NYHETER</span>
       </Link>
-      <div className=" h-full hidden md:flex  ">
-        <NavbarPopoverLinkMenu link="nyheter" label="Nyheter" className="border-l-[1px] border-neutral-300" />
-        <NavbarPopoverLinkMenu link="lokalt" label="Lokalt" className="border-l-[1px] border-neutral-300  " />
-        <NavbarPopoverLinkMenu link="sport" label="Sport" className="border-x-[1px] border-neutral-300" />
+      <div className=" h-full hidden md:flex border-r-[1px] border-neutral-300 ">
+        <NavbarPopoverLinkMenu link="nyheter" label="Nyheter" className="border-l-[1px]" />
+        <NavbarPopoverLinkMenu link="lokalt" label="Lokalt" className="border-l-[1px]   " />
+        <NavbarPopoverLinkMenu link="sport" label="Sport" className="border-l-[1px] " />
+        <NavbarLink link="play" label="SVT Play" className="border-l-[1px] " />
+        <NavbarLink link="barn" label="Barn" className="border-l-[1px] " />
+        <NavbarLink link="tv" label="Tv tabell" className="border-l-[1px]" />
+        <NavbarLink link="program" label="Alla program" className="border-l-[1px]" />
+        <NavbarLink link="om" label="Om SVT" className="border-l-[1px] " />
       </div>
       <NavbarPopoverLinkMenu link="lokalt" label="Lokalt" className="md:hidden border-l-[1px] border-neutral-300" />
       <Popover className="h-full md:hidden border-l-[1px] border-neutral-300">
@@ -76,17 +81,35 @@ function NavigationBar() {
   );
 }
 
+function NavbarLink({ link, label, className }) {
+  return (
+    <Match path={link} className>
+      {({ match }) => (
+        <Link
+          to={`/${link}`}
+          className={clsx(
+            "flex items-center h-full w-full px-2 hover:bg-neutral-100 whitespace-nowrap border-neutral-300",
+            match && "bg-neutral-100",
+            className
+          )}
+        >
+          <span className="font-semibold text-base ">{label}</span>
+        </Link>
+      )}
+    </Match>
+  );
+}
 function NavbarPopoverLinkMenu({ link, label, className }) {
   return (
     <Match path={`/${link}`}>
       {({ match }) => (
-        <div className={clsx("flex h-full justify-center  items-center   relative", className)}>
-          <Link
-            to={`/${link}`}
-            className={clsx("flex items-center pl-3 h-full w-full pr-10 ", { "bg-neutral-100": match })}
-          >
-            <span className="font-semibold text-base ">{label}</span>
-          </Link>
+        <div
+          className={clsx(
+            "flex h-full justify-center  items-center hover:bg-neutral-100 border-neutral-300  relative",
+            className
+          )}
+        >
+          <NavbarLink link={link} label={label} className="pl-2 pr-10" />
           <Popover className={clsx("absolute border-neutral-300 right-3")}>
             {({ open }) => (
               <>
