@@ -46,13 +46,13 @@ function NavigationBar() {
       </Link>
       <div className=" h-full hidden md:flex border-r-[1px] border-neutral-300 ">
         <NavbarPopoverLinkMenu link="nyheter" label="Nyheter" className="border-l-[1px]" />
-        <NavbarPopoverLinkMenu link="lokalt" label="Lokalt" className="border-l-[1px]   " />
+        <NavbarPopoverLinkMenu link="lokalt" label="Lokalt" className="border-l-[1px]" />
         <NavbarPopoverLinkMenu link="sport" label="Sport" className="border-l-[1px] " />
-        <NavbarLink link="play" label="SVT Play" className="border-l-[1px] " />
-        <NavbarLink link="barn" label="Barn" className="border-l-[1px] " />
-        <NavbarLink link="tv" label="Tv tabell" className="border-l-[1px]" />
-        <NavbarLink link="program" label="Alla program" className="border-l-[1px]" />
-        <NavbarLink link="om" label="Om SVT" className="border-l-[1px] " />
+        <NavbarLink link="play" disabled={true} label="SVT Play" className="border-l-[1px] disabled " />
+        <NavbarLink link="barn" label="Barn" className="border-l-[1px] " disabled={true} />
+        <NavbarLink link="tv" label="Tv tabell" className="border-l-[1px]" disabled={true} />
+        <NavbarLink link="program" label="Alla program" className="border-l-[1px]" disabled={true} />
+        <NavbarLink link="om" label="Om SVT" className="border-l-[1px] " disabled={true} />
       </div>
       <NavbarPopoverLinkMenu link="lokalt" label="Lokalt" className="md:hidden border-l-[1px] border-neutral-300" />
       <Popover className="h-full md:hidden border-l-[1px] border-neutral-300">
@@ -81,7 +81,7 @@ function NavigationBar() {
   );
 }
 
-function NavbarLink({ link, label, className }) {
+function NavbarLink({ link, label, className, disabled = false }) {
   return (
     <Match path={link} className>
       {({ match }) => (
@@ -90,6 +90,7 @@ function NavbarLink({ link, label, className }) {
           className={clsx(
             "flex items-center h-full w-full px-2 hover:bg-neutral-100 whitespace-nowrap border-neutral-300",
             match && "bg-neutral-100",
+            disabled && "opacity-50 pointer-events-none line-through",
             className
           )}
         >
@@ -99,14 +100,15 @@ function NavbarLink({ link, label, className }) {
     </Match>
   );
 }
-function NavbarPopoverLinkMenu({ link, label, className }) {
+function NavbarPopoverLinkMenu({ link, label, className, disabled }) {
   return (
     <Match path={`/${link}`}>
       {({ match }) => (
         <div
           className={clsx(
             "flex h-full justify-center  items-center hover:bg-neutral-100 border-neutral-300  relative",
-            className
+            className,
+            disabled && "opacity-50 pointer-events-none line-through"
           )}
         >
           <NavbarLink link={link} label={label} className="pl-2 pr-10" />
