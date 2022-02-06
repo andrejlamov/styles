@@ -54,7 +54,7 @@ function NavigationBar() {
   return (
     <nav className="flex justify-center   h-20 border-b-4  border-red-600 ">
       <div className="flex relative justify-between items-center w-full md:w-auto ">
-        <Link to="/nyheter" href="#" className="flex pb-2 items-baseline px-1 mr-auto md:mr-5 md:px-0 px-2">
+        <Link to="/nyheter" href="#" className="flex pb-2 items-baseline mr-auto md:mr-5 md:px-0 px-2">
           <span className="font-semibold text-4xl pr-4">svt</span>
           <span className="font-extralight text-3xl">NYHETER</span>
         </Link>
