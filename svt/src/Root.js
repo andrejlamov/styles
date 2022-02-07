@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { Popover } from "@headlessui/react";
 import { Router, Link, Match } from "@reach/router";
 import useHover from "./hooks/useHover";
+import { chunk, range, concat } from "lodash";
 
 export default function Root() {
   return (
@@ -64,7 +65,7 @@ function NavigationBar() {
           <NavbarPopoverLinkMenu link="sport" label="Sport" className="border-l-[1px] " />
           <NavbarLink link="play" disabled={true} label="SVT Play" className="border-l-[1px] disabled " />
           <NavbarLink link="barn" label="Barn" className="border-l-[1px] " disabled={true} />
-          <NavbarLink link="tv" label="Tv tabell" className="border-l-[1px]" disabled={true} />
+          <NavbarLink link="tv" label="Tv-tablå" className="border-l-[1px]" disabled={true} />
           <NavbarLink link="program" label="Alla program" className="border-l-[1px]" disabled={true} />
           <NavbarLink link="om" label="Om SVT" className="border-l-[1px] " disabled={true} />
         </div>
@@ -151,13 +152,18 @@ function NavbarPopoverLinkMenu({ link, label, className, disabled }) {
                 </Popover.Button>
                 <Popover.Panel
                   className={clsx(
-                    "absolute right-[-13px] top-[calc(theme(spacing.12)_+_5px)] w-[theme(spacing.72)] ",
+                    "absolute right-[-13px] top-[calc(theme(spacing.12)_+_4px)] w-[theme(spacing.72)] ",
                     "md:right-[calc(-0.5_*_theme(spacing.72)_+_17px)]",
                     "before:content('') before:absolure before:border-[7px] before:absolute before:border-t-transparent before:border-r-transparent before:border-b-red-600 before:border-l-transparent before:left-[calc(100%-30px)] before:top-[-17px]",
                     "md:before:left-[calc(theme(spacing.72)_*_0.5)]"
                   )}
                 >
-                  <LinkSubMenuContent />
+                  <LinkSubMenuContent>
+                    {concat(
+                      [<Link to="/">Ekoomi</Link>, <Link to="/">Kultur</Link>, <Link to="/">Vetenskap</Link>],
+                      range(0, 10).map(() => <a className="line-through">hello</a>)
+                    )}
+                  </LinkSubMenuContent>
                 </Popover.Panel>
               </>
             )}
@@ -180,24 +186,29 @@ function MenuContent() {
   );
 }
 
-function LinkSubMenuContent({ className }) {
+/* function LinkSubMenuContent({ className, children }) {
+ *   return (
+ *     <div Name={clsx(" flex flex-1 flex-col bg-neutral-50 ", className)}>
+ *       {chunk(children, 3).map((ch) => <div>(ch.map((e) => e))</div>)}
+ *         <a className="flex-1">asd</a>
+ *         <a className="flex-1">asd</a>
+ *       </div>
+ *     </div>
+ *   );
+ * } */
+
+function LinkSubMenuContent({ children }) {
   return (
-    <div className={clsx(" flex flex-1 flex-col bg-neutral-50 ", className)}>
-      <div className="flex">
-        <a className="flex-1">asd</a>
-        <a className="flex-1 bg-red-100">asd</a>
-        <a className="flex-1">asd</a>
-      </div>
-      <div className="flex">
-        <a className="flex-1">asd</a>
-        <a className="flex-1">asd</a>
-        <a className="flex-1">asd</a>
-      </div>
-      <div className="flex">
-        <a className="flex-1">asd</a>
-        <a className="flex-1">asd</a>
-        <a className="flex-1">asd</a>
-      </div>
+    <div className={clsx(" flex flex-col bg-neutral-50 text-neutral-800 flex-1 font-extralight text-sm ")}>
+      {chunk(children, 3).map((ch) => (
+        <div className="flex border-x-[1px] border-neutral-300">
+          {ch.map((e) => (
+            <div className="flex flex-1 justify-center py-1 first:border-l-[0px] border-l-[1px] border-b-[1px] ">
+              {e}
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
@@ -211,7 +222,7 @@ function RightNow({ title, alarm = false }) {
         href="#"
         className={clsx("items-center flex bg-neutral-50 w-full shadow-sm font-medium", alarm && "bg-neutral-800")}
       >
-        <span className="text-lg bg-red-600 font-medium text-lg px-2 py-2 self-stretch flex items-center text-neutral-50 whitespace-nowrap ">
+        <span className="text-lg bg-red-600 font-medium px-2 py-2 self-stretch flex items-center text-neutral-50 whitespace-nowrap ">
           JUST NU
         </span>
         <span
