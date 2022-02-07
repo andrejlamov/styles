@@ -15,7 +15,7 @@ export default function Root() {
         <main className="h-full bg-neutral-200  " path="/">
           <MainContainer>
             <Router>
-              <Nyheter path="/nyheter" />
+              <Nyheter path="/" />
               <Lokalt path="/lokalt" />
               <Sport path="/sport" />
             </Router>
@@ -54,12 +54,12 @@ function NavigationBar() {
   return (
     <nav className="flex justify-center   h-20 border-b-4  border-red-600 ">
       <div className="flex relative justify-between items-center w-full md:w-auto ">
-        <Link to="/nyheter" href="#" className="flex pb-2 items-baseline mr-auto md:mr-5 md:px-0 px-2">
+        <Link to="/" href="#" className="flex pb-2 items-baseline mr-auto md:mr-5 md:px-0 px-2">
           <span className="font-semibold text-4xl pr-4">svt</span>
           <span className="font-extralight text-3xl">NYHETER</span>
         </Link>
         <div className=" h-full hidden md:flex border-r-[1px] border-neutral-300 ">
-          <NavbarPopoverLinkMenu link="nyheter" label="Nyheter" className="border-l-[1px]" />
+          <NavbarPopoverLinkMenu link="" label="Nyheter" className="border-l-[1px]" />
           <NavbarPopoverLinkMenu link="lokalt" label="Lokalt" className="border-l-[1px]" />
           <NavbarPopoverLinkMenu link="sport" label="Sport" className="border-l-[1px] " />
           <NavbarLink link="play" disabled={true} label="SVT Play" className="border-l-[1px] disabled " />
